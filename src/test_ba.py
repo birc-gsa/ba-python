@@ -23,14 +23,14 @@ def fibonacci_string(n: int) -> str:
     return b
 
 
-def test_is_border(x: str, b: int, i: int) -> None:
+def check_is_border(x: str, b: int, i: int) -> None:
     """Brute force checks if x[:b] is a border of x[:i+1]."""
     assert x[:b] == x[i-b+1:i+1], "We have a border"
 
 
-def test_is_strict_border(x: str, b: int, i: int) -> None:
+def check_is_strict_border(x: str, b: int, i: int) -> None:
     """Checks if x[:b] is a border of x[:i+1] and that it is strict."""
-    test_is_border(x, b, i)
+    check_is_border(x, b, i)
     assert b == 0 or i == len(x) - 1 or x[b] != x[i+1], \
         "The border is strict"
 
@@ -41,12 +41,12 @@ def test_border_array() -> None:
         x = random_string(20, "acgt")
         ba = border_array(x)
         for i, b in enumerate(ba):
-            test_is_border(x, b, i)
+            check_is_border(x, b, i)
     for k in range(3, 7):
         x = fibonacci_string(k)
         ba = border_array(x)
         for i, b in enumerate(ba):
-            test_is_border(x, b, i)
+            check_is_border(x, b, i)
 
 
 def test_strict_border_array() -> None:
@@ -55,9 +55,9 @@ def test_strict_border_array() -> None:
         x = random_string(20, "acgt")
         ba = strict_border_array(x)
         for i, b in enumerate(ba):
-            test_is_strict_border(x, b, i)
+            check_is_strict_border(x, b, i)
     for k in range(3, 7):
         x = fibonacci_string(k)
         ba = strict_border_array(x)
         for i, b in enumerate(ba):
-            test_is_strict_border(x, b, i)
+            check_is_strict_border(x, b, i)
